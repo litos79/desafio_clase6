@@ -20,9 +20,9 @@ pipeline {
             }
         }
            
-           stage('Initialize Web Server') {
+           stage('Deploy') {
             steps {
-                sh 'nginx start'
+                sh 'npm deploy'
             }
         }
  
