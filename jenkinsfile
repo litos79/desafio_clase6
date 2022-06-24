@@ -20,7 +20,7 @@ pipeline {
             }
         }
            
-           stage('Run Sonar') {
+           stage('Sonar Scanner') {
             steps {
                 sh 'npm run sonar'
             }
@@ -29,12 +29,6 @@ pipeline {
             stage('Build Application') {
             steps {
                 sh 'npm run build'
-            }
-        }
-
-            stage('Initialize Web Server') {
-            steps {
-                sh 'service nginx start'
             }
         }
     }
