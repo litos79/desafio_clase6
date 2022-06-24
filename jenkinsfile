@@ -8,23 +8,34 @@ pipeline {
             }
         }
 
-              stage('Unit Test') {
+              stage('Lint Test') {
             steps {
-                echo 'Ejecutando Unit Test'
+                echo 'run lint'
             }
         }
 
-              stage('Build Application') {
+              stage('Test Application') {
             steps {
-                bat 'npm run build'
+                sh 'npm run test'
             }
         }
            
-           stage('Deploy') {
+           stage('Run Sonar') {
             steps {
-                sh 'npm deploy'
+                sh 'npm run sonar'
             }
         }
- 
+            
+            stage('Build Application') {
+            steps {
+                sh 'npm run build'
+            }
+        }
+
+            stage('Initialize Web Server') {
+            steps {
+                sh 'service nginx start'
+            }
+        }
     }
 }
